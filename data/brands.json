@@ -1,0 +1,8 @@
+[
+  { "id": "yokohama", "name": "Yokohama", "logo": "/images/YOKOHAMA.png", "tagline": "Japan's Premium Tyres", "status": "Active" },
+  { "id": "mrf", "name": "MRF Tyres", "logo": "/images/MRF tyres.png", "tagline": "India's No.1 Tyre Brand", "status": "Active" },
+  { "id": "ceat", "name": "CEAT", "logo": "/images/CEAT tyres.png", "tagline": "Confidence for Every Ride", "status": "Active" },
+  { "id": "goodyear", "name": "Goodyear", "logo": "/images/Good Year.jpg", "tagline": "Global Innovation Leader", "status": "Active" },
+  { "id": "bridgestone", "name": "Bridgestone", "logo": "/images/bridgestone.png", "tagline": "World's #1 Premium Tyre", "status": "Active" },
+  { "id": "michelin", "name": "Michelin", "logo": "/images/mechalin.jpg", "tagline": "Performance & Innovation", "status": "Active" }
+]
