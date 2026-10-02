@@ -1,5 +1,57 @@
 [
-  { "id": "b-1", "customerName": "Rajesh Sharma", "carModel": "Honda City (2022)", "serviceName": "4-Wheel Alignment & Balancing", "date": "2026-10-02", "timeSlot": "11:00 AM", "phone": "+91 98220 44556", "status": "Confirmed", "totalINR": 1850 },
-  { "id": "b-2", "customerName": "Vikramaditya Deshmukh", "carModel": "Toyota Fortuner", "serviceName": "Run-Flat Tyre Replacement", "date": "2026-10-03", "timeSlot": "02:30 PM", "phone": "+91 94230 11223", "status": "Pending", "totalINR": 24500 },
-  { "id": "b-3", "customerName": "Amitabh Kulkarni", "carModel": "Hyundai Creta", "serviceName": "Nitrogen Air Flush & Inspection", "date": "2026-10-04", "timeSlot": "04:00 PM", "phone": "+91 98900 99887", "status": "Confirmed", "totalINR": 850 }
+  {
+    "id": "b-1790860529081",
+    "status": "Confirmed",
+    "totalINR": 2200,
+    "customerName": "Suresh Patil",
+    "carModel": "Tata Harrier (2024)",
+    "serviceName": "3D Laser Wheel Alignment & Balancing",
+    "date": "2026-10-08",
+    "timeSlot": "10:30 AM",
+    "phone": "+91 98231 77889"
+  },
+  {
+    "id": "b-1790859613231",
+    "status": "Pending",
+    "totalINR": 1850,
+    "customerName": "Rohan Patil",
+    "carModel": "Mahindra Thar",
+    "serviceName": "3D Wheel Alignment",
+    "date": "2026-10-06",
+    "timeSlot": "11:30 AM",
+    "phone": "+91 98765 12345"
+  },
+  {
+    "id": "b-1",
+    "customerName": "Rajesh Sharma",
+    "carModel": "Honda City (2022)",
+    "serviceName": "4-Wheel Alignment & Balancing",
+    "date": "2026-10-02",
+    "timeSlot": "11:00 AM",
+    "phone": "+91 98220 44556",
+    "status": "Confirmed",
+    "totalINR": 1850
+  },
+  {
+    "id": "b-2",
+    "customerName": "Vikramaditya Deshmukh",
+    "carModel": "Toyota Fortuner",
+    "serviceName": "Run-Flat Tyre Replacement",
+    "date": "2026-10-03",
+    "timeSlot": "02:30 PM",
+    "phone": "+91 94230 11223",
+    "status": "Pending",
+    "totalINR": 24500
+  },
+  {
+    "id": "b-3",
+    "customerName": "Amitabh Kulkarni",
+    "carModel": "Hyundai Creta",
+    "serviceName": "Nitrogen Air Flush & Inspection",
+    "date": "2026-10-04",
+    "timeSlot": "04:00 PM",
+    "phone": "+91 98900 99887",
+    "status": "Confirmed",
+    "totalINR": 850
+  }
 ]

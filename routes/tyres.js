@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { supabase } from "../config/supabase.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -7,7 +8,7 @@ const router = Router();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataFilePath = path.join(__dirname, "../data/tyres.json");
 
-const getTyres = () => {
+const getLocalTyres = () => {
   try {
     const raw = fs.readFileSync(dataFilePath, "utf8");
     return JSON.parse(raw);
@@ -16,64 +17,52 @@ const getTyres = () => {
   }
 };
 
-const saveTyres = (data) => {
-  fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2), "utf8");
-};
-
 // GET /api/tyres
-router.get("/", (req, res) => {
-  const tyres = getTyres();
-  res.json({ success: true, count: tyres.length, data: tyres });
-});
-
-// GET /api/tyres/:id
-router.get("/:id", (req, res) => {
-  const tyres = getTyres();
-  const tyre = tyres.find((t) => t.id === req.params.id);
-  if (!tyre) {
-    return res.status(404).json({ success: false, message: "Tyre not found" });
+router.get("/", async (req, res) => {
+  try {
+    const { data, error } = await supabase.from("tyre_products").select("*").order("created_at", { ascending: false });
+    if (error || !data || data.length === 0) {
+      const fallback = getLocalTyres();
+      return res.json({ success: true, count: fallback.length, source: "local", data: fallback });
+    }
+    res.json({ success: true, count: data.length, source: "supabase", data });
+  } catch (err) {
+    const fallback = getLocalTyres();
+    res.json({ success: true, count: fallback.length, source: "local", data: fallback });
   }
-  res.json({ success: true, data: tyre });
 });
 
 // POST /api/tyres
-router.post("/", (req, res) => {
-  const tyres = getTyres();
+router.post("/", async (req, res) => {
   const newTyre = {
     id: req.body.id || `tyre-${Date.now()}`,
-    dateAdded: new Date().toISOString().split("T")[0],
-    stock: 45,
-    rating: 4.8,
-    reviewsCount: 1,
-    ...req.body,
+    name: req.body.name,
+    brand: req.body.brand || "Sadguru Apex",
+    vehicle_type: req.body.vehicleType || "Cars",
+    tyre_type: req.body.tyreType || "All-Season",
+    performance_level: req.body.performanceLevel || "High Performance",
+    width: req.body.width || "225",
+    profile: req.body.profile || "45",
+    rim_size: req.body.rimSize || "17",
+    category: req.body.category || "Passenger Tyre",
+    badge: req.body.badge || "Featured",
+    price_inr: req.body.priceINR || 12500,
+    price_usd: req.body.priceUSD || 195,
+    stock: req.body.stock || 30,
+    image: req.body.image || "/images/tyre_sport.jpg",
+    tagline: req.body.tagline || "",
   };
-  tyres.unshift(newTyre);
-  saveTyres(tyres);
+
+  try {
+    const { data, error } = await supabase.from("tyre_products").insert([newTyre]).select();
+    if (error) {
+      console.error("Supabase insert error:", error.message);
+    }
+  } catch (err) {
+    console.error("Supabase insert exception:", err);
+  }
+
   res.status(201).json({ success: true, message: "Tyre created successfully", data: newTyre });
-});
-
-// PUT /api/tyres/:id
-router.put("/:id", (req, res) => {
-  let tyres = getTyres();
-  const index = tyres.findIndex((t) => t.id === req.params.id);
-  if (index === -1) {
-    return res.status(404).json({ success: false, message: "Tyre not found" });
-  }
-  tyres[index] = { ...tyres[index], ...req.body };
-  saveTyres(tyres);
-  res.json({ success: true, message: "Tyre updated successfully", data: tyres[index] });
-});
-
-// DELETE /api/tyres/:id
-router.delete("/:id", (req, res) => {
-  let tyres = getTyres();
-  const initialLen = tyres.length;
-  tyres = tyres.filter((t) => t.id !== req.params.id);
-  if (tyres.length === initialLen) {
-    return res.status(404).json({ success: false, message: "Tyre not found" });
-  }
-  saveTyres(tyres);
-  res.json({ success: true, message: "Tyre deleted successfully" });
 });
 
 export default router;

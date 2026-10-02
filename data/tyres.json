@@ -16,9 +16,81 @@
     "rating": 4.9,
     "reviewsCount": 148,
     "image": "/images/tyre_sport.jpg",
+    "gallery": [
+      "/images/tyre_sport.jpg",
+      "/images/tyre_tread_macro.jpg",
+      "/images/hero_tyre.jpg",
+      "/images/brand_heritage.jpg"
+    ],
     "priceUSD": 249,
     "priceINR": 18900,
-    "stock": 45
+    "specs": {
+      "wetGrip": "A",
+      "fuelEfficiency": "B",
+      "noiseLevel": "68 dB",
+      "speedRating": "Y (300 km/h)",
+      "warranty": "50,000 Miles",
+      "treadwear": "300 AA A",
+      "loadIndex": "98Y XL",
+      "sidewall": "Kevlar Aramid Reinforced",
+      "treadDepth": "8.2 mm",
+      "runFlat": "Available (ZP)"
+    },
+    "scores": {
+      "dryGrip": 99,
+      "wetGrip": 96,
+      "responsiveness": 98,
+      "comfort": 86,
+      "longevity": 88
+    },
+    "visualSpecs": {
+      "grip": {
+        "score": 99,
+        "label": "Maximum Adhesion",
+        "desc": "Dynamic contact patch expanding under lateral loads"
+      },
+      "mileage": {
+        "score": 85,
+        "label": "50,000 Miles",
+        "desc": "Dual-compound silica matrix balanced for street & track"
+      },
+      "wetPerformance": {
+        "score": 96,
+        "label": "Class A Rated",
+        "desc": "Instant hydro-evacuation prevents hydroplaning at 120 km/h"
+      },
+      "comfort": {
+        "score": 86,
+        "label": "Firm Feedback",
+        "desc": "Motorsport carcass provides tactile steering road feel"
+      },
+      "noise": {
+        "score": 89,
+        "label": "68 dB Decibels",
+        "desc": "Asymmetric tread pitch interrupts harmonic air hum"
+      },
+      "durability": {
+        "score": 95,
+        "label": "Impact Resistant",
+        "desc": "Kevlar cord plies protect against track curb shocks"
+      }
+    },
+    "availableSizes": [
+      "225/45 R18",
+      "245/40 R19",
+      "255/35 R20",
+      "275/35 R20",
+      "285/30 R21",
+      "305/30 R21"
+    ],
+    "description": "Engineered with our proprietary motorsport dual-compound matrix, the ApexSport Pro 4S delivers surgical turn-in precision and relentless lateral grip under intense thermal loads. Outer shoulder blocks maximize dry cornering while inner silica channels evacuate water instantly.",
+    "highlights": [
+      "Dynamic Response Technology adapting tread contact patch in high-speed turns",
+      "Bi-Compound 3.0: High-friction elastomer outside, hybrid silica inside",
+      "Deep rim protector safeguarding forged alloy wheels against curb scuffs",
+      "Certified for German Autobahn and Nürburgring circuit performance"
+    ],
+    "bestSuitedFor": "Porsche 911 GT3, BMW M3/M4, Audi RS6, Mercedes-AMG C63, Corvette Z06"
   },
   {
     "id": "grand-touring-gt",
@@ -37,50 +109,1004 @@
     "rating": 4.95,
     "reviewsCount": 312,
     "image": "/images/tyre_touring.jpg",
+    "gallery": [
+      "/images/tyre_touring.jpg",
+      "/images/tyre_tread_macro.jpg",
+      "/images/hero_tyre.jpg",
+      "/images/brand_heritage.jpg"
+    ],
     "priceUSD": 195,
     "priceINR": 14500,
-    "stock": 60
+    "specs": {
+      "wetGrip": "A",
+      "fuelEfficiency": "A",
+      "noiseLevel": "66 dB",
+      "speedRating": "W (270 km/h)",
+      "warranty": "80,000 Miles",
+      "treadwear": "540 A A",
+      "loadIndex": "102W XL",
+      "sidewall": "Smooth Contour Acoustic",
+      "treadDepth": "8.8 mm",
+      "runFlat": "Optional"
+    },
+    "scores": {
+      "dryGrip": 92,
+      "wetGrip": 95,
+      "responsiveness": 90,
+      "comfort": 99,
+      "longevity": 98
+    },
+    "visualSpecs": {
+      "grip": {
+        "score": 92,
+        "label": "Predictable Traction",
+        "desc": "All-weather interlocking sipes for cold mornings & downpours"
+      },
+      "mileage": {
+        "score": 98,
+        "label": "80,000+ Miles",
+        "desc": "Even-pressure footprint prevents irregular shoulder wear"
+      },
+      "wetPerformance": {
+        "score": 95,
+        "label": "Hydro-Bite 3.0",
+        "desc": "V-shaped directional channels drain standing highway puddles"
+      },
+      "comfort": {
+        "score": 99,
+        "label": "Velveteen Ride",
+        "desc": "Multi-ply polyester carcass absorbs bridge expansion joints"
+      },
+      "noise": {
+        "score": 97,
+        "label": "66 dB Silent Foam",
+        "desc": "Internal polyurethane foam reduces cabin tyre roar by up to 9dB"
+      },
+      "durability": {
+        "score": 94,
+        "label": "Heavy Duty Casing",
+        "desc": "High-mileage polymer structure resists stone chipping"
+      }
+    },
+    "availableSizes": [
+      "205/55 R16",
+      "215/55 R17",
+      "225/50 R18",
+      "235/45 R18",
+      "245/45 R19",
+      "255/45 R20"
+    ],
+    "description": "Crafted for executive sedans and grand tourers, the GrandTouring GT Silent features internal acoustic damping foam that reduces cabin tyre roar by up to 9dB. Its symmetric V-directional sipes offer exceptional all-weather braking and unprecedented mileage.",
+    "highlights": [
+      "AcousticSound Absorber foam laminated directly inside the inner liner",
+      "Optimized pitch sequencing cancels harmonic road resonance frequencies",
+      "Adaptive siping provides bite in downpours and cold autumn conditions",
+      "High-mileage polymer structure delivers up to 80,000 miles of tread life"
+    ],
+    "bestSuitedFor": "Mercedes-Benz S-Class, BMW 7 Series, Audi A8 L, Lexus LS, Genesis G90"
   },
   {
     "id": "terra-force-at",
     "name": "TerraForce All-Terrain X",
-    "brand": "Sadguru Rugged",
+    "brand": "Sadguru Terra",
     "vehicleType": "SUVs",
     "tyreType": "All-Terrain",
-    "performanceLevel": "Rugged Off-Road",
+    "performanceLevel": "All-Terrain",
     "width": "275",
     "profile": "65",
     "rimSize": "18",
-    "dateAdded": "2026-06-15",
-    "tagline": "Aggressive 3-ply sidewall traction built to conquer mud, gravel, and rock.",
-    "category": "All-Terrain SUV",
-    "badge": "Off-Road Ready",
+    "dateAdded": "2026-06-14",
+    "tagline": "Unstoppable off-road ruggedness with refined highway manners and rock ejection.",
+    "category": "4x4 & Off-Road",
+    "badge": "Heavy Duty",
     "rating": 4.85,
-    "reviewsCount": 94,
+    "reviewsCount": 220,
     "image": "/images/tyre_offroad.jpg",
-    "priceUSD": 225,
+    "gallery": [
+      "/images/tyre_offroad.jpg",
+      "/images/tyre_tread_macro.jpg",
+      "/images/hero_tyre.jpg",
+      "/images/brand_heritage.jpg"
+    ],
+    "priceUSD": 235,
     "priceINR": 17500,
-    "stock": 35
+    "specs": {
+      "wetGrip": "B",
+      "fuelEfficiency": "C",
+      "noiseLevel": "71 dB",
+      "speedRating": "T (190 km/h)",
+      "warranty": "65,000 Miles",
+      "treadwear": "600 A B",
+      "loadIndex": "116T LT",
+      "sidewall": "Tri-Gard 3-Ply Kevlar",
+      "treadDepth": "12.5 mm",
+      "runFlat": "Standard LT Reinforced"
+    },
+    "scores": {
+      "dryGrip": 88,
+      "wetGrip": 90,
+      "responsiveness": 84,
+      "comfort": 88,
+      "longevity": 96
+    },
+    "visualSpecs": {
+      "grip": {
+        "score": 94,
+        "label": "Rock & Mud Grip",
+        "desc": "Aggressive biting shoulder lugs claw through loose shale and mud"
+      },
+      "mileage": {
+        "score": 95,
+        "label": "65,000 Miles",
+        "desc": "Cut-and-chip resistant compound withstands sharp jagged gravel"
+      },
+      "wetPerformance": {
+        "score": 90,
+        "label": "Wide Clear Channels",
+        "desc": "Self-cleaning voids evacuate slush, gravel, and standing water"
+      },
+      "comfort": {
+        "score": 86,
+        "label": "Stable Tracking",
+        "desc": "Interlocking center tread blocks provide highway straight-line stability"
+      },
+      "noise": {
+        "score": 84,
+        "label": "71 dB Balanced",
+        "desc": "Staggered pitch blocks reduce off-road droning at 100 km/h"
+      },
+      "durability": {
+        "score": 99,
+        "label": "Kevlar Shield 3-Ply",
+        "desc": "Tri-ply carcass and sidewall armor shrug off rock punctures"
+      }
+    },
+    "availableSizes": [
+      "265/70 R16",
+      "265/65 R17",
+      "275/65 R18",
+      "275/60 R20",
+      "285/50 R20",
+      "305/45 R22"
+    ],
+    "description": "Forged for rugged terrain, rocky ascents, and muddy trails without sacrificing highway stability. Featuring 3-ply Kevlar-reinforced sidewalls and aggressive self-cleaning stone ejectors, the TerraForce X laughs at punctures and jagged shale.",
+    "highlights": [
+      "Kevlar sidewall shield preventing sidewall pinch flats and sharp rock cuts",
+      "Deep stepped tread blocks with built-in stone and mud ejectors",
+      "Interlocking 3D tread center elements for predictable tarmac highway tracking",
+      "Severe snow flake (3PMSF) certified for high mountain passes"
+    ],
+    "bestSuitedFor": "Land Rover Defender, Toyota Land Cruiser 300, Jeep Wrangler Rubicon, Ford Bronco Raptor"
   },
   {
-    "id": "voltdrive-ev",
+    "id": "volt-drive-ev",
     "name": "VoltDrive EV AeroMax",
     "brand": "Sadguru Volt",
-    "vehicleType": "EVs",
-    "tyreType": "EV Special",
-    "performanceLevel": "Low Rolling Resistance",
-    "width": "235",
-    "profile": "50",
-    "rimSize": "19",
-    "dateAdded": "2026-08-01",
-    "tagline": "Aero-optimized tread extending EV battery range with instant torque grip.",
-    "category": "Electric Vehicle",
-    "badge": "EV Special",
-    "rating": 4.88,
-    "reviewsCount": 76,
+    "vehicleType": "Cars",
+    "tyreType": "EV Optimized",
+    "performanceLevel": "Eco EV",
+    "width": "255",
+    "profile": "40",
+    "rimSize": "20",
+    "dateAdded": "2026-09-01",
+    "tagline": "Low rolling resistance tuned specifically for instant torque and heavy battery packs.",
+    "category": "Electric Vehicle EV",
+    "badge": "Range Booster",
+    "rating": 4.9,
+    "reviewsCount": 185,
     "image": "/images/tyre_ev.jpg",
-    "priceUSD": 210,
-    "priceINR": 15900,
-    "stock": 50
+    "gallery": [
+      "/images/tyre_ev.jpg",
+      "/images/tyre_tread_macro.jpg",
+      "/images/hero_tyre.jpg",
+      "/images/brand_heritage.jpg"
+    ],
+    "priceUSD": 215,
+    "priceINR": 16100,
+    "specs": {
+      "wetGrip": "A",
+      "fuelEfficiency": "A+",
+      "noiseLevel": "65 dB",
+      "speedRating": "Y (300 km/h)",
+      "warranty": "60,000 Miles",
+      "treadwear": "460 A A",
+      "loadIndex": "101Y XL (HL)",
+      "sidewall": "Aero-Dimple Drag Reduction",
+      "treadDepth": "7.8 mm",
+      "runFlat": "Self-Sealing SealTech"
+    },
+    "scores": {
+      "dryGrip": 95,
+      "wetGrip": 94,
+      "responsiveness": 94,
+      "comfort": 97,
+      "longevity": 92
+    },
+    "visualSpecs": {
+      "grip": {
+        "score": 95,
+        "label": "Instant Torque Bite",
+        "desc": "Reinforced crown handles instant EV 0-100 acceleration"
+      },
+      "mileage": {
+        "score": 92,
+        "label": "60,000 Miles",
+        "desc": "Anti-wear polymer prevents rapid inner shoulder degradation"
+      },
+      "wetPerformance": {
+        "score": 94,
+        "label": "Grade A Wet Grip",
+        "desc": "Micro-grooves grip wet asphalt under regeneration braking"
+      },
+      "comfort": {
+        "score": 97,
+        "label": "Plush Glide",
+        "desc": "Multi-chamber resonance cancellation provides seamless silence"
+      },
+      "noise": {
+        "score": 99,
+        "label": "65 dB Ultra Silent",
+        "desc": "Silences electric motor high-frequency inverter hum"
+      },
+      "durability": {
+        "score": 93,
+        "label": "High Load (HL)",
+        "desc": "Engineered specifically for heavy 2,500+ kg EV battery platforms"
+      }
+    },
+    "availableSizes": [
+      "235/45 R18",
+      "235/40 R19",
+      "255/45 R19",
+      "255/40 R20",
+      "275/40 R20",
+      "285/35 R22"
+    ],
+    "description": "Electric drivetrains deliver instantaneous torque and carry substantial battery weight. The VoltDrive EV AeroMax features an ultra-stiff reinforced crown to prevent rapid shoulder wear, combined with an aerodynamic sidewall that extends vehicle range by up to 8%.",
+    "highlights": [
+      "Aero-Dimple sidewall design reducing aerodynamic drag around wheel wells",
+      "Eco-Silica compound decreases rolling resistance by 18% for extended range",
+      "Ultra-Reinforced carcass handles high curb weight and 0-100 km/h instant torque",
+      "SilentContact acoustic cavity layer suppresses motor-whine transmission"
+    ],
+    "bestSuitedFor": "Tesla Model S Plaid / Model Y, Porsche Taycan, Audi e-tron GT, BMW i4 M50, Mercedes EQS"
+  },
+  {
+    "id": "apex-moto-track-gp",
+    "name": "ApexMoto Track GP",
+    "brand": "Sadguru Moto",
+    "vehicleType": "Bikes",
+    "tyreType": "Track / Racing",
+    "performanceLevel": "Track Day",
+    "width": "190",
+    "profile": "55",
+    "rimSize": "17",
+    "dateAdded": "2026-08-28",
+    "tagline": "MotoGP-inspired dual-compound racing tyre for extreme lean angles and precision turn-in.",
+    "category": "Ultra-High Performance",
+    "badge": "60° Lean Angle",
+    "rating": 4.96,
+    "reviewsCount": 88,
+    "image": "/images/tyre_bike.jpg",
+    "gallery": [
+      "/images/tyre_bike.jpg",
+      "/images/tyre_tread_macro.jpg",
+      "/images/hero_tyre.jpg",
+      "/images/brand_heritage.jpg"
+    ],
+    "priceUSD": 185,
+    "priceINR": 13900,
+    "specs": {
+      "wetGrip": "A",
+      "fuelEfficiency": "B",
+      "noiseLevel": "67 dB",
+      "speedRating": "(W) 270+ km/h",
+      "warranty": "25,000 KM",
+      "treadwear": "220 A A",
+      "loadIndex": "75W Radial",
+      "sidewall": "Zero-Degree Seamless Steel Belt",
+      "treadDepth": "6.5 mm",
+      "runFlat": "Tubeless High Speed"
+    },
+    "scores": {
+      "dryGrip": 99,
+      "wetGrip": 91,
+      "responsiveness": 99,
+      "comfort": 84,
+      "longevity": 82
+    },
+    "visualSpecs": {
+      "grip": {
+        "score": 99,
+        "label": "Full 60° Lean Grip",
+        "desc": "Sticky 100% synthetic resin on tyre shoulders for knee-down apexes"
+      },
+      "mileage": {
+        "score": 82,
+        "label": "Hard Center Strip",
+        "desc": "Longer-wearing silica center compound for straight highway cruising"
+      },
+      "wetPerformance": {
+        "score": 91,
+        "label": "Flash Groove Sipes",
+        "desc": "Disperses standing rainwater rapidly while leaning up to 35°"
+      },
+      "comfort": {
+        "score": 85,
+        "label": "Rigid Response",
+        "desc": "Immediate chassis feedback through clip-ons and suspension"
+      },
+      "noise": {
+        "score": 88,
+        "label": "Low Aerodynamic Drag",
+        "desc": "Smooth profile contour slices cleanly through turbulent airflow"
+      },
+      "durability": {
+        "score": 93,
+        "label": "Aramid Belt Crown",
+        "desc": "Resists centrifugal deformation at speeds exceeding 280 km/h"
+      }
+    },
+    "availableSizes": [
+      "120/70 ZR17 (Front)",
+      "160/60 ZR17 (Rear)",
+      "180/55 ZR17 (Rear)",
+      "190/55 ZR17 (Rear)",
+      "200/55 ZR17 (Rear)"
+    ],
+    "description": "Engineered on World Superbike tracks, the ApexMoto Track GP utilizes a 2CT (Dual Compound Technology) layout: 100% silica hard-wearing compound in the center for high-mileage highway stability, blended seamlessly with soft race-grade elastomer on the shoulders for 60° lean angle confidence.",
+    "highlights": [
+      "Seamless 0-degree steel aramid carcass preventing high-speed tire ballooning",
+      "Dynamic lean-angle profile delivering lightning-quick chicane flick transitions",
+      "Optimized warm-up time reaching peak operational temperature in just 1.5 laps",
+      "Approved for both professional circuit track days and aggressive street riding"
+    ],
+    "bestSuitedFor": "Ducati Panigale V4, BMW S1000RR, Yamaha YZF-R1, Kawasaki Ninja ZX-10R, KTM Super Duke 1290"
+  },
+  {
+    "id": "terra-rider-rally-adv",
+    "name": "TerraRider Rally ADV",
+    "brand": "Sadguru Moto",
+    "vehicleType": "Bikes",
+    "tyreType": "All-Terrain",
+    "performanceLevel": "All-Terrain",
+    "width": "150",
+    "profile": "70",
+    "rimSize": "18",
+    "dateAdded": "2026-07-15",
+    "tagline": "50/50 Dual-Sport adventure tyre built for Dakar sands, riverbeds, and highway transit.",
+    "category": "4x4 & Off-Road",
+    "badge": "50/50 ADV",
+    "rating": 4.88,
+    "reviewsCount": 104,
+    "image": "/images/tyre_bike_adv.jpg",
+    "gallery": [
+      "/images/tyre_bike_adv.jpg",
+      "/images/tyre_tread_macro.jpg",
+      "/images/hero_tyre.jpg"
+    ],
+    "priceUSD": 165,
+    "priceINR": 12400,
+    "specs": {
+      "wetGrip": "B",
+      "fuelEfficiency": "B",
+      "noiseLevel": "70 dB",
+      "speedRating": "V (240 km/h)",
+      "warranty": "30,000 KM",
+      "treadwear": "380 A B",
+      "loadIndex": "70V TL/TT",
+      "sidewall": "Dual Aramid Cord Shield",
+      "treadDepth": "10.0 mm",
+      "runFlat": "Tubeless / Tube-Type compatible"
+    },
+    "scores": {
+      "dryGrip": 90,
+      "wetGrip": 88,
+      "responsiveness": 89,
+      "comfort": 88,
+      "longevity": 94
+    },
+    "visualSpecs": {
+      "grip": {
+        "score": 93,
+        "label": "Sand & Rock Claws",
+        "desc": "Offset chevron chevron knobs paddle through deep gravel & mud"
+      },
+      "mileage": {
+        "score": 94,
+        "label": "High ADV Mileage",
+        "desc": "Dense center block bridge stops rapid highway knob cupping"
+      },
+      "wetPerformance": {
+        "score": 88,
+        "label": "Slush Evacuation",
+        "desc": "Wide transverse voids eject thick mud without clogging"
+      },
+      "comfort": {
+        "score": 88,
+        "label": "Absorptive Plies",
+        "desc": "Cushions handlebars from sharp rock strikes and pothole rim dings"
+      },
+      "noise": {
+        "score": 85,
+        "label": "70 dB Highway Poise",
+        "desc": "Staggered block spacing minimizes knobby howling on paved motorways"
+      },
+      "durability": {
+        "score": 98,
+        "label": "Thorn & Thorn Proof",
+        "desc": "Puncture-resistant breaker plies shrug off acacia thorns and shale"
+      }
+    },
+    "availableSizes": [
+      "90/90-21 (Front)",
+      "110/80 R19 (Front)",
+      "120/70 R19 (Front)",
+      "150/70 R17 (Rear)",
+      "150/70 R18 (Rear)",
+      "170/60 R17 (Rear)"
+    ],
+    "description": "The quintessential globe-trotting adventure tyre. Designed to handle 160 km/h tarmac highway stretches with silky stability, then immediately transition into deep mountain sand, river crossings, and sharp slate without shedding knobs.",
+    "highlights": [
+      "Chevron tread block geometry delivering uninterrupted traction on loose terrain",
+      "Reinforced heavy-ply casing resisting rim pinches in rock fields at low PSI",
+      "Mud and gravel self-ejecting grooves prevent tread packing in wet clay",
+      "Dakar rally proven thermal compound prevents high-speed chunking"
+    ],
+    "bestSuitedFor": "BMW R1250GS / R1300GS, Honda Africa Twin, KTM 1290 Super Adventure, Triumph Tiger 900"
+  },
+  {
+    "id": "winter-grip-ice",
+    "name": "WinterGrip IceClaw 2",
+    "brand": "Sadguru Apex",
+    "vehicleType": "Cars",
+    "tyreType": "Winter",
+    "performanceLevel": "Ultra-High Performance",
+    "width": "245",
+    "profile": "45",
+    "rimSize": "18",
+    "dateAdded": "2026-08-01",
+    "tagline": "Unrivaled braking safety on black ice, freezing slush, and alpine snow.",
+    "category": "Winter / Extreme Cold",
+    "badge": "Arctic Tested",
+    "rating": 4.92,
+    "reviewsCount": 96,
+    "image": "/images/tyre_winter.jpg",
+    "gallery": [
+      "/images/tyre_winter.jpg",
+      "/images/tyre_tread_macro.jpg",
+      "/images/hero_tyre.jpg",
+      "/images/brand_heritage.jpg"
+    ],
+    "priceUSD": 240,
+    "priceINR": 17900,
+    "specs": {
+      "wetGrip": "A",
+      "fuelEfficiency": "B",
+      "noiseLevel": "69 dB",
+      "speedRating": "V (240 km/h)",
+      "warranty": "45,000 Miles",
+      "treadwear": "380 A A",
+      "loadIndex": "100V XL",
+      "sidewall": "Cryo-Flex Polymer",
+      "treadDepth": "9.2 mm",
+      "runFlat": "Available"
+    },
+    "scores": {
+      "dryGrip": 87,
+      "wetGrip": 98,
+      "responsiveness": 89,
+      "comfort": 91,
+      "longevity": 89
+    },
+    "visualSpecs": {
+      "grip": {
+        "score": 98,
+        "label": "Sub-Zero Biting Edges",
+        "desc": "Over 2,400 micro-sipes create suction on sheet ice"
+      },
+      "mileage": {
+        "score": 89,
+        "label": "45,000 Miles",
+        "desc": "Even wear distribution engineered for cold paved highways"
+      },
+      "wetPerformance": {
+        "score": 97,
+        "label": "Slush Evacuation",
+        "desc": "Deep directional V-grooves disperse slush to eliminate aquaplaning"
+      },
+      "comfort": {
+        "score": 91,
+        "label": "Supple Cold Ride",
+        "desc": "Maintains rubber elasticity even in -35°C arctic blizzards"
+      },
+      "noise": {
+        "score": 90,
+        "label": "69 dB Quiet",
+        "desc": "Variable pitch block pattern dampens snow sipe hum"
+      },
+      "durability": {
+        "score": 93,
+        "label": "Pothole Shield",
+        "desc": "Steel reinforced crown resists hidden winter pothole impacts"
+      }
+    },
+    "availableSizes": [
+      "205/55 R16",
+      "225/45 R17",
+      "225/40 R18",
+      "245/45 R18",
+      "255/40 R19",
+      "275/40 R20"
+    ],
+    "description": "Engineered in sub-zero Scandinavian testing proving grounds, the IceClaw 2 maintains rubber elasticity even at -35°C. Over 2,400 microscopic 3D zig-zag sipes create biting edges on slippery ice roads where standard tyres lose all traction.",
+    "highlights": [
+      "Cryo-Adaptive silica polymer remains pliable in extreme arctic sub-zero cold",
+      "3D Micro-Pump siping evacuates thin water layer between ice and rubber",
+      "Certified 3-Peak Mountain Snowflake (3PMSF) rating for severe winter blizzards",
+      "Deep snow evacuation channels provide instant hill climbing traction"
+    ],
+    "bestSuitedFor": "Audi Quattro, BMW xDrive, Mercedes 4MATIC, Volvo AWD, Subaru WRX in alpine regions"
+  },
+  {
+    "id": "grand-touring-suv-max",
+    "name": "GrandTouring SUV Max",
+    "brand": "Sadguru GT",
+    "vehicleType": "SUVs",
+    "tyreType": "All-Season",
+    "performanceLevel": "Grand Touring",
+    "width": "275",
+    "profile": "45",
+    "rimSize": "21",
+    "dateAdded": "2026-08-20",
+    "tagline": "High-load luxury touring tyre tailored for fast, heavy luxury performance SUVs.",
+    "category": "All-Season Touring",
+    "badge": "Luxury SUV",
+    "rating": 4.91,
+    "reviewsCount": 165,
+    "image": "/images/tyre_suv_max.jpg",
+    "gallery": [
+      "/images/tyre_suv_max.jpg",
+      "/images/tyre_tread_macro.jpg",
+      "/images/hero_tyre.jpg"
+    ],
+    "priceUSD": 255,
+    "priceINR": 19200,
+    "specs": {
+      "wetGrip": "A",
+      "fuelEfficiency": "B",
+      "noiseLevel": "68 dB",
+      "speedRating": "Y (300 km/h)",
+      "warranty": "70,000 Miles",
+      "treadwear": "500 A A",
+      "loadIndex": "110Y XL",
+      "sidewall": "Curvature Reinforced Curb Rib",
+      "treadDepth": "9.0 mm",
+      "runFlat": "Available"
+    },
+    "scores": {
+      "dryGrip": 94,
+      "wetGrip": 96,
+      "responsiveness": 92,
+      "comfort": 98,
+      "longevity": 95
+    },
+    "visualSpecs": {
+      "grip": {
+        "score": 94,
+        "label": "Heavy SUV Poise",
+        "desc": "Wide center ribs hold fast in high-speed highway sweeps"
+      },
+      "mileage": {
+        "score": 95,
+        "label": "70,000 Miles",
+        "desc": "Advanced carbon silica matrix resists SUV weight roll-off"
+      },
+      "wetPerformance": {
+        "score": 96,
+        "label": "Class A Wet Brake",
+        "desc": "Hydro-channels eliminate water wall under heavy 2.4-ton braking"
+      },
+      "comfort": {
+        "score": 98,
+        "label": "Executive Quiet",
+        "desc": "Acoustic foam liner dampens high-frequency road drone"
+      },
+      "noise": {
+        "score": 94,
+        "label": "68 dB Low Noise",
+        "desc": "Computerized harmonic cancellation across all speeds"
+      },
+      "durability": {
+        "score": 96,
+        "label": "Reinforced Sidewall",
+        "desc": "Twin high-strength steel belts safeguard against curb scraping"
+      }
+    },
+    "availableSizes": [
+      "255/50 R19",
+      "275/45 R20",
+      "275/45 R21",
+      "285/40 R22",
+      "295/35 R22",
+      "315/30 R22"
+    ],
+    "description": "Crafted specifically for the demands of modern luxury performance SUVs. Heavier weights and higher centers of gravity demand special carcass reinforcement to eliminate roll while preserving velvety quiet.",
+    "highlights": [
+      "High Load (XL) structural plies maintaining tread flatness in emergency lane changes",
+      "Integrated acoustic silence dampening foam inside carcass",
+      "All-weather siping delivering confident wet braking and cold weather security",
+      "Reinforced curb guard rib protecting diamond-cut rims from scratches"
+    ],
+    "bestSuitedFor": "Porsche Cayenne, BMW X5/X7, Mercedes GLE/GLS, Range Rover Sport, Audi Q8"
+  },
+  {
+    "id": "apex-moto-corsa-gp",
+    "name": "ApexMoto Corsa GP",
+    "brand": "Sadguru Apex Moto",
+    "vehicleType": "Bikes",
+    "tyreType": "Track & Superbike",
+    "performanceLevel": "Ultra-High Performance",
+    "width": "120",
+    "profile": "70",
+    "rimSize": "17",
+    "dateAdded": "2026-08-28",
+    "tagline": "MotoGP dual-compound radial tyre engineered for extreme lean angles and razor cornering.",
+    "category": "Superbike & Motorcycle",
+    "badge": "Superbike Spec",
+    "rating": 4.98,
+    "reviewsCount": 194,
+    "image": "/images/tyre_bike_corsa.jpg",
+    "gallery": [
+      "/images/tyre_bike_corsa.jpg",
+      "/images/tyre_tread_macro.jpg",
+      "/images/hero_tyre.jpg"
+    ],
+    "priceUSD": 180,
+    "priceINR": 13500,
+    "specs": {
+      "wetGrip": "A",
+      "fuelEfficiency": "B",
+      "noiseLevel": "65 dB",
+      "speedRating": "(W) 270+ km/h",
+      "warranty": "25,000 KM",
+      "treadwear": "220 AA A",
+      "loadIndex": "58W / 73W",
+      "sidewall": "Kevlar Mono-Spiral Belt",
+      "treadDepth": "5.5 mm",
+      "runFlat": "Tubeless Radial"
+    },
+    "scores": {
+      "dryGrip": 99,
+      "wetGrip": 94,
+      "responsiveness": 99,
+      "comfort": 88,
+      "longevity": 89
+    },
+    "visualSpecs": {
+      "grip": {
+        "score": 99,
+        "label": "58° Lean Angle",
+        "desc": "Slick shoulder compound delivers maximum contact patch at full knee-down lean"
+      },
+      "mileage": {
+        "score": 89,
+        "label": "25,000 KM",
+        "desc": "Hard center compound provides high highway endurance"
+      },
+      "wetPerformance": {
+        "score": 94,
+        "label": "Silica Flash",
+        "desc": "Directional tread grooves channel rainwater out instantly"
+      },
+      "comfort": {
+        "score": 88,
+        "label": "Flexible Carcass",
+        "desc": "Absorbs harsh mid-corner bumps without upsetting line"
+      },
+      "noise": {
+        "score": 92,
+        "label": "65 dB Quiet",
+        "desc": "Smooth tread profile eliminates high-speed tire whine"
+      },
+      "durability": {
+        "score": 95,
+        "label": "Aramid Belted",
+        "desc": "High-tensile steel & aramid plies prevent high-speed centrifugal ballooning"
+      }
+    },
+    "availableSizes": [
+      "110/70 R17",
+      "120/70 ZR17",
+      "150/60 R17",
+      "160/60 ZR17",
+      "180/55 ZR17",
+      "190/55 ZR17",
+      "200/55 ZR17"
+    ],
+    "description": "Engineered with technology derived directly from world superbike championship racing. The ApexMoto Corsa GP combines a hard central compound for long highway mileage with ultra-sticky soft shoulder rubber that locks onto tarmac at up to 58 degrees of lean angle.",
+    "highlights": [
+      "Dual-Compound 2CT technology: hard center for high mileage, soft shoulder for track grip",
+      "Mono-Spiral Aramid Belt construction for lightning-fast turn-in transition response",
+      "Optimized silica tread compound for rapid thermal warm-up under cold morning rides",
+      "Tubeless high-pressure radial carcass certified for top speeds exceeding 270 km/h"
+    ],
+    "bestSuitedFor": "Kawasaki Ninja ZX-10R/ZX-6R, Yamaha YZF-R1/R15, KTM Duke 390/790, BMW S1000RR, Ducati Panigale, Royal Enfield GT 650"
+  },
+  {
+    "id": "terra-moto-adv-overland",
+    "name": "TerraMoto ADV Overland",
+    "brand": "Sadguru Terra Moto",
+    "vehicleType": "Bikes",
+    "tyreType": "Dual Sport / ADV",
+    "performanceLevel": "All-Terrain Adventure",
+    "width": "110",
+    "profile": "80",
+    "rimSize": "19",
+    "dateAdded": "2026-08-30",
+    "tagline": "Heavy-duty 80/20 adventure motorcycle tyre built for highway high-speed and rugged mountain trails.",
+    "category": "Superbike & Motorcycle",
+    "badge": "ADV Explorer",
+    "rating": 4.92,
+    "reviewsCount": 115,
+    "image": "/images/tyre_bike.jpg",
+    "gallery": [
+      "/images/tyre_bike.jpg",
+      "/images/tyre_tread_macro.jpg",
+      "/images/hero_tyre.jpg"
+    ],
+    "priceUSD": 165,
+    "priceINR": 12200,
+    "specs": {
+      "wetGrip": "A",
+      "fuelEfficiency": "B",
+      "noiseLevel": "67 dB",
+      "speedRating": "V (240 km/h)",
+      "warranty": "30,000 KM",
+      "treadwear": "380 A A",
+      "loadIndex": "59V / 70V",
+      "sidewall": "Reinforced 4-Ply Carcass",
+      "treadDepth": "8.0 mm",
+      "runFlat": "Tubeless / Tube Type"
+    },
+    "scores": {
+      "dryGrip": 94,
+      "wetGrip": 95,
+      "responsiveness": 92,
+      "comfort": 94,
+      "longevity": 96
+    },
+    "visualSpecs": {
+      "grip": {
+        "score": 94,
+        "label": "Tread Interlock",
+        "desc": "Large tread blocks grip loose gravel, sand, mud, and highway asphalt"
+      },
+      "mileage": {
+        "score": 96,
+        "label": "30,000 KM",
+        "desc": "Resilient rubber formulation resists puncture from sharp stones and thorns"
+      },
+      "wetPerformance": {
+        "score": 95,
+        "label": "Deep Siping",
+        "desc": "Wide evacuation voids eject mud, sand, and monsoon rainwater"
+      },
+      "comfort": {
+        "score": 94,
+        "label": "Trail Smooth",
+        "desc": "Flexible carcass damping reduces handlebar vibration on unpaved roads"
+      },
+      "noise": {
+        "score": 90,
+        "label": "67 dB Low Noise",
+        "desc": "Staggered block alignment prevents knobby tire hum on highways"
+      },
+      "durability": {
+        "score": 97,
+        "label": "Puncture Proof",
+        "desc": "Steel-armored crown resists sharp rock cuts on mountain expeditions"
+      }
+    },
+    "availableSizes": [
+      "100/90 R19",
+      "110/80 R19",
+      "120/70 R19",
+      "150/70 R17",
+      "170/60 R17",
+      "90/90 R21"
+    ],
+    "description": "Designed for adventure touring motorcyclists who demand high-speed highway stability combined with genuine off-road traction. The TerraMoto ADV Overland features interlocking block tread geometry that bites into loose dirt without squirming on dry pavement.",
+    "highlights": [
+      "80% On-Road / 20% Off-Road dual-purpose tread design for long-distance touring",
+      "High-density silica compound for outstanding wet grip on wet mountain passes",
+      "Self-cleaning tread voids that eject mud and stones dynamically as wheel rotates",
+      "Extra-strong carcass carcass designed to support heavy panniers and pillion riders"
+    ],
+    "bestSuitedFor": "BMW R1250 GS, Royal Enfield Himalayan 450, Triumph Tiger 900, Honda Africa Twin, KTM 390 Adventure"
+  },
+  {
+    "id": "terra-force-pro-at",
+    "name": "TerraForce Pro Extreme A/T",
+    "brand": "Sadguru 4x4",
+    "vehicleType": "SUVs",
+    "tyreType": "All-Terrain 4x4",
+    "performanceLevel": "Extreme Off-Road",
+    "width": "265",
+    "profile": "65",
+    "rimSize": "17",
+    "dateAdded": "2026-09-01",
+    "tagline": "Heavy-duty all-terrain tire built for rugged expeditions, rocky trails, and highway comfort.",
+    "category": "4x4 & Off-Road",
+    "badge": "Extreme Terrain",
+    "rating": 4.95,
+    "reviewsCount": 178,
+    "image": "/images/tyre_suv_at.jpg",
+    "gallery": [
+      "/images/tyre_suv_at.jpg",
+      "/images/tyre_tread_macro.jpg",
+      "/images/hero_tyre.jpg"
+    ],
+    "priceUSD": 235,
+    "priceINR": 17800,
+    "specs": {
+      "wetGrip": "A",
+      "fuelEfficiency": "B",
+      "noiseLevel": "69 dB",
+      "speedRating": "T (190 km/h)",
+      "warranty": "65,000 Miles",
+      "treadwear": "560 A B",
+      "loadIndex": "116T XL",
+      "sidewall": "3-Ply TriGard Steel Armored",
+      "treadDepth": "11.2 mm",
+      "runFlat": "Heavy Duty Reinforced"
+    },
+    "scores": {
+      "dryGrip": 95,
+      "wetGrip": 94,
+      "responsiveness": 91,
+      "comfort": 93,
+      "longevity": 98
+    },
+    "visualSpecs": {
+      "grip": {
+        "score": 95,
+        "label": "Traction-Bite Blocks",
+        "desc": "Interlocking sipes dig into mud, deep sand, and wet scree"
+      },
+      "mileage": {
+        "score": 98,
+        "label": "65,000 Miles",
+        "desc": "Chip-and-tear resistant compound for brutal rock encounters"
+      },
+      "wetPerformance": {
+        "score": 94,
+        "label": "Class A Rated",
+        "desc": "Deep evacuation valleys clear muddy water instantly"
+      },
+      "comfort": {
+        "score": 93,
+        "label": "Cushioned Carcass",
+        "desc": "Absorbs unpaved ruts and potholes with ease"
+      },
+      "noise": {
+        "score": 91,
+        "label": "69 dB Quiet",
+        "desc": "Acoustic optimized shoulder pitch prevents highway tire drone"
+      },
+      "durability": {
+        "score": 99,
+        "label": "Armor Sidewall",
+        "desc": "Deflection ribs resist rock punctures and sharp curb pinch"
+      }
+    },
+    "availableSizes": [
+      "245/70 R16",
+      "265/65 R17",
+      "265/60 R18",
+      "275/65 R18",
+      "285/60 R18",
+      "275/55 R20"
+    ],
+    "description": "Engineered for serious 4x4 enthusiasts and SUV expedition drivers. The TerraForce Pro Extreme A/T combines aggressive biting shoulder tread blocks with reinforced 3-ply sidewalls for unstoppable overland capability without sacrificing highway refinement.",
+    "highlights": [
+      "CoreGard Technology with split and bruise-resistant sidewall rubber",
+      "Interlocking tread elements to eliminate deformation and irregular wear",
+      "Stone ejectors dynamically expelling gravel from tread grooves",
+      "3-Peak Mountain Snowflake (3PMSF) certified severe snow rating"
+    ],
+    "bestSuitedFor": "Toyota Fortuner, Ford Endeavour, Mahindra Thar, Jeep Wrangler, Isuzu V-Cross, Toyota Hilux"
+  },
+  {
+    "id": "apex-sport-suv-gt",
+    "name": "ApexSport SUV Performance",
+    "brand": "Sadguru Apex",
+    "vehicleType": "SUVs",
+    "tyreType": "High-Performance SUV",
+    "performanceLevel": "Ultra-High Performance",
+    "width": "275",
+    "profile": "45",
+    "rimSize": "20",
+    "dateAdded": "2026-09-02",
+    "tagline": "Track-inspired cornering precision and wet braking engineered for modern performance SUVs.",
+    "category": "Ultra-High Performance",
+    "badge": "Track SUV",
+    "rating": 4.96,
+    "reviewsCount": 142,
+    "image": "/images/tyre_touring.jpg",
+    "gallery": [
+      "/images/tyre_touring.jpg",
+      "/images/tyre_tread_macro.jpg",
+      "/images/hero_tyre.jpg"
+    ],
+    "priceUSD": 265,
+    "priceINR": 19900,
+    "specs": {
+      "wetGrip": "A",
+      "fuelEfficiency": "B",
+      "noiseLevel": "67 dB",
+      "speedRating": "Y (300 km/h)",
+      "warranty": "50,000 Miles",
+      "treadwear": "340 AA A",
+      "loadIndex": "110Y XL",
+      "sidewall": "Aramid High-Tension Plies",
+      "treadDepth": "8.5 mm",
+      "runFlat": "Available (ZP)"
+    },
+    "scores": {
+      "dryGrip": 98,
+      "wetGrip": 97,
+      "responsiveness": 97,
+      "comfort": 92,
+      "longevity": 91
+    },
+    "visualSpecs": {
+      "grip": {
+        "score": 98,
+        "label": "Supercar-Level Grip",
+        "desc": "Asymmetric contact face plants firmly in fast bends"
+      },
+      "mileage": {
+        "score": 91,
+        "label": "50,000 Miles",
+        "desc": "Dense silica elastomer maintains integrity under heat"
+      },
+      "wetPerformance": {
+        "score": 97,
+        "label": "Hydro-Track A+",
+        "desc": "Twin wide center grooves evacuate standing water instantly"
+      },
+      "comfort": {
+        "score": 92,
+        "label": "Linear Road Feel",
+        "desc": "Tuned radial belts isolate jarring chassis vibrations"
+      },
+      "noise": {
+        "score": 93,
+        "label": "67 dB Low Noise",
+        "desc": "Quiet-track siping eliminates high-speed tire pitch"
+      },
+      "durability": {
+        "score": 95,
+        "label": "Curb Shield",
+        "desc": "Heavy rim flange protector shields forged wheels"
+      }
+    },
+    "availableSizes": [
+      "255/50 R19",
+      "275/45 R20",
+      "275/40 R21",
+      "285/40 R22",
+      "295/35 R22",
+      "315/30 R22"
+    ],
+    "description": "Developed specifically for the tremendous torque and lateral forces generated by modern high-output performance SUVs. Features race-compound outer shoulder blocks for glued-down handling in highway sweepers.",
+    "highlights": [
+      "Dynamic response hybrid aramid and nylon belt for razor-sharp steering",
+      "Bi-compound tread: sport elastomer outer zone, high-silica wet inner zone",
+      "Ultra-reinforced carcass designed to counter high SUV roll inertia",
+      "Approved for high-speed highway cruising and alpine passes"
+    ],
+    "bestSuitedFor": "BMW X5 M, Porsche Macan, Mercedes-AMG GLC 63, Audi SQ5, Range Rover Velar, Jaguar F-Pace"
   }
 ]
