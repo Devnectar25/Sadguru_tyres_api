@@ -1,29 +1,7 @@
 import { Router } from "express";
 import { supabase } from "../config/supabase.js";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
 
 const router = Router();
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dataFilePath = path.join(__dirname, "../data/quotes.json");
-
-const getLocalQuotes = () => {
-  try {
-    const raw = fs.readFileSync(dataFilePath, "utf8");
-    return JSON.parse(raw);
-  } catch (err) {
-    return [];
-  }
-};
-
-const saveLocalQuotes = (quotes) => {
-  try {
-    fs.writeFileSync(dataFilePath, JSON.stringify(quotes, null, 2));
-  } catch (err) {
-    console.error("Error writing to local quotes file:", err);
-  }
-};
 
 const formatQuote = (q) => ({
   id: q.id,
@@ -36,7 +14,7 @@ const formatQuote = (q) => ({
   created_at: q.created_at || new Date().toISOString(),
 });
 
-// GET /api/quotes
+// GET /api/quotes - Fetch directly from Supabase database
 router.get("/", async (req, res) => {
   try {
     const { data, error } = await supabase
@@ -44,22 +22,20 @@ router.get("/", async (req, res) => {
       .select("*")
       .order("created_at", { ascending: false });
 
-    if (error || !data || data.length === 0) {
-      if (error) console.error("Supabase fetch quotes error:", error);
-      const fallback = getLocalQuotes().map(formatQuote);
-      return res.json({ success: true, count: fallback.length, source: "local", data: fallback });
+    if (error) {
+      console.error("Supabase fetch quotes error:", error.message);
+      return res.status(500).json({ success: false, message: error.message, data: [] });
     }
 
     const formatted = data.map(formatQuote);
-    res.json({ success: true, count: formatted.length, source: "supabase", data: formatted });
+    res.json({ success: true, count: formatted.length, data: formatted });
   } catch (err) {
-    console.error("Fetch quotes exception:", err);
-    const fallback = getLocalQuotes().map(formatQuote);
-    res.json({ success: true, count: fallback.length, source: "local", data: fallback });
+    console.error("Fetch quotes exception:", err.message);
+    res.status(500).json({ success: false, message: err.message, data: [] });
   }
 });
 
-// POST /api/quotes
+// POST /api/quotes - Store DIRECTLY in Supabase Database
 router.post("/", async (req, res) => {
   const newQuotePayload = {
     tyre_name: req.body.tyreName || req.body.tyre_name || "Tyre Product",
@@ -68,8 +44,6 @@ router.post("/", async (req, res) => {
     total_formatted: req.body.totalFormatted || req.body.total_formatted || "₹0",
   };
 
-  let createdQuote = null;
-
   try {
     const { data, error } = await supabase
       .from("quote_inquiries")
@@ -77,29 +51,36 @@ router.post("/", async (req, res) => {
       .select();
 
     if (error) {
-      console.error("Supabase quote insert error:", error);
-    } else if (data && data.length > 0) {
-      createdQuote = data[0];
+      console.error("❌ Supabase quote insert error:", error.message);
+      return res.status(500).json({ success: false, message: error.message });
     }
+
+    const createdQuote = formatQuote(data[0]);
+    console.log("✅ Quote stored DIRECTLY in Supabase Database:", createdQuote.id);
+
+    return res.status(201).json({
+      success: true,
+      message: "Quote stored directly in database",
+      data: createdQuote,
+    });
   } catch (err) {
-    console.error("Supabase quote insert exception:", err);
+    console.error("❌ Supabase quote insert exception:", err.message);
+    return res.status(500).json({ success: false, message: "Database connection failed" });
   }
+});
 
-  const localRecord = formatQuote(createdQuote || {
-    id: `q_${Date.now()}`,
-    ...newQuotePayload
-  });
-
-  const currentList = getLocalQuotes();
-  currentList.unshift(localRecord);
-  saveLocalQuotes(currentList);
-
-  res.status(201).json({
-    success: true,
-    message: "Quote submitted successfully",
-    data: localRecord,
-  });
+// DELETE /api/quotes/:id - Delete quote inquiry from database
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { error } = await supabase.from("quote_inquiries").delete().eq("id", id);
+    if (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+    res.json({ success: true, message: "Quote deleted from database", id });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
 });
 
 export default router;
-

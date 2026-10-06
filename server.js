@@ -6,6 +6,12 @@ import brandsRouter from "./routes/brands.js";
 import bookingsRouter from "./routes/bookings.js";
 import quotesRouter from "./routes/quotes.js";
 import authRouter from "./routes/auth.js";
+import subadminsRouter from "./routes/subadmins.js";
+import errorsRouter from "./routes/errors.js";
+import analyticsRouter from "./routes/analytics.js";
+import faqsRouter from "./routes/faqs.js";
+import servicesRouter from "./routes/services.js";
+import leadsRouter from "./routes/leads.js";
 
 dotenv.config();
 
@@ -37,6 +43,12 @@ app.use("/api/brands", brandsRouter);
 app.use("/api/bookings", bookingsRouter);
 app.use("/api/quotes", quotesRouter);
 app.use("/api/admin", authRouter);
+app.use("/api/admin/subadmins", subadminsRouter);
+app.use("/api/admin/errors", errorsRouter);
+app.use("/api/admin/analytics", analyticsRouter);
+app.use("/api/faqs", faqsRouter);
+app.use("/api/services", servicesRouter);
+app.use("/api/leads", leadsRouter);
 
 // Global 404 handler
 app.use((req, res) => {
