@@ -29,15 +29,16 @@ CREATE TABLE IF NOT EXISTS public.tyre_products (
   visual_specs JSONB DEFAULT '{}'::jsonb,
   available_sizes TEXT[] DEFAULT ARRAY[]::TEXT[],
   highlights TEXT[] DEFAULT ARRAY[]::TEXT[],
+  show_on_home BOOLEAN DEFAULT false,
   date_added DATE DEFAULT CURRENT_DATE,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 ALTER TABLE public.tyre_products ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Allow public read access to tyre_products" ON public.tyre_products FOR SELECT USING (true);
-CREATE POLICY "Allow full access for service_role to tyre_products" ON public.tyre_products FOR ALL USING (true);
+DROP POLICY IF EXISTS "Allow all for tyre_products" ON public.tyre_products;
+CREATE POLICY "Allow all for tyre_products" ON public.tyre_products FOR ALL USING (true) WITH CHECK (true);
 
--- Insert All 12 Real Tyre Products
+-- Insert Real Tyre Products
 INSERT INTO public.tyre_products (id, name, brand, vehicle_type, tyre_type, performance_level, width, profile, rim_size, category, badge, rating, reviews_count, image, price_usd, price_inr, stock, tagline, description, specs, visual_specs, available_sizes)
 VALUES 
   ('apex-sport-pro', 'ApexSport Pro 4S', 'Sadguru Apex', 'Cars', 'Track / Racing', 'Ultra-High Performance', '245', '40', '19', 'Ultra-High Performance', 'Track Master', 4.90, 148, 'https://zfxkqnwmydzoqqojrjms.supabase.co/storage/v1/object/public/tyres_products/tyre_sport.jpg', 249.00, 18900.00, 45, 'Track-bred grip engineered for high-output sports cars.', 'Engineered with our proprietary motorsport dual-compound matrix.', '{"wetGrip":"A","fuelEfficiency":"B","noiseLevel":"68 dB","speedRating":"Y (300 km/h)","warranty":"50,000 Miles"}'::jsonb, '{"grip":{"score":99,"label":"Maximum Adhesion"},"mileage":{"score":85,"label":"50,000 Miles"}}'::jsonb, ARRAY['225/45 R18', '245/40 R19', '255/35 R20', '275/35 R20', '285/30 R21']),
@@ -56,13 +57,7 @@ ON CONFLICT (id) DO UPDATE SET
   name = EXCLUDED.name,
   brand = EXCLUDED.brand,
   price_inr = EXCLUDED.price_inr,
-  price_usd = EXCLUDED.price_usd,
-  stock = EXCLUDED.stock,
-  tagline = EXCLUDED.tagline,
-  description = EXCLUDED.description,
-  specs = EXCLUDED.specs,
-  visual_specs = EXCLUDED.visual_specs,
-  available_sizes = EXCLUDED.available_sizes;
+  stock = EXCLUDED.stock;
 
 
 -- 2. TABLE: partner_brands (Manufacturer Brand Partners)
@@ -76,8 +71,8 @@ CREATE TABLE IF NOT EXISTS public.partner_brands (
 );
 
 ALTER TABLE public.partner_brands ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Allow public read access to partner_brands" ON public.partner_brands FOR SELECT USING (true);
-CREATE POLICY "Allow full access for service_role to partner_brands" ON public.partner_brands FOR ALL USING (true);
+DROP POLICY IF EXISTS "Allow all for partner_brands" ON public.partner_brands;
+CREATE POLICY "Allow all for partner_brands" ON public.partner_brands FOR ALL USING (true) WITH CHECK (true);
 
 INSERT INTO public.partner_brands (id, name, logo, tagline, status)
 VALUES 
@@ -106,13 +101,8 @@ CREATE TABLE IF NOT EXISTS public.service_bookings (
 );
 
 ALTER TABLE public.service_bookings ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Allow public insert & read for service_bookings" ON public.service_bookings FOR ALL USING (true);
-
-INSERT INTO public.service_bookings (customer_name, car_model, service_name, date, time_slot, phone, status, total_inr)
-VALUES 
-  ('Rajesh Sharma', 'Honda City (2022)', '4-Wheel Alignment & Balancing', '2026-10-02', '11:00 AM', '+91 98220 44556', 'Confirmed', 1850.00),
-  ('Vikramaditya Deshmukh', 'Toyota Fortuner', 'Run-Flat Tyre Replacement', '2026-10-03', '02:30 PM', '+91 94230 11223', 'Pending', 24500.00),
-  ('Amitabh Kulkarni', 'Hyundai Creta', 'Nitrogen Air Flush & Inspection', '2026-10-04', '04:00 PM', '+91 98900 99887', 'Confirmed', 850.00);
+DROP POLICY IF EXISTS "Allow all for service_bookings" ON public.service_bookings;
+CREATE POLICY "Allow all for service_bookings" ON public.service_bookings FOR ALL USING (true) WITH CHECK (true);
 
 
 -- 4. TABLE: quote_inquiries (Wholesale Quotes)
@@ -128,12 +118,8 @@ CREATE TABLE IF NOT EXISTS public.quote_inquiries (
 );
 
 ALTER TABLE public.quote_inquiries ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Allow public insert & read for quote_inquiries" ON public.quote_inquiries FOR ALL USING (true);
-
-INSERT INTO public.quote_inquiries (tyre_name, quantity, email, company_name, total_formatted)
-VALUES 
-  ('ApexSport Pro 4S', 12, 'fleet@maharashtratravels.com', 'Maharashtra Travels Ltd', '₹2,26,800'),
-  ('TerraGrip All-Terrain X', 8, 'purchasing@westernsafari.in', 'Western Safari Tours', '₹1,27,200');
+DROP POLICY IF EXISTS "Allow all for quote_inquiries" ON public.quote_inquiries;
+CREATE POLICY "Allow all for quote_inquiries" ON public.quote_inquiries FOR ALL USING (true) WITH CHECK (true);
 
 
 -- 5. TABLE: leads (Customer Contacts & Inquiries)
@@ -145,14 +131,121 @@ CREATE TABLE IF NOT EXISTS public.leads (
   subject VARCHAR(255) DEFAULT 'General Inquiry',
   message TEXT,
   status VARCHAR(50) DEFAULT 'New',
+  date DATE DEFAULT CURRENT_DATE,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Allow public insert & read for leads" ON public.leads FOR ALL USING (true);
+DROP POLICY IF EXISTS "Allow all for leads" ON public.leads;
+CREATE POLICY "Allow all for leads" ON public.leads FOR ALL USING (true) WITH CHECK (true);
 
-INSERT INTO public.leads (name, phone, email, subject, message, status)
-VALUES 
-  ('Vikramaditya Rao', '9822012345', 'vikramaditya.rao@gmail.com', '3D Wheel Alignment & Tyre Fitting', 'Need full alignment scan and set of 4 Yokohama BluEarth tyres for Honda City.', 'New'),
-  ('Pooja Deshmukh', '9890188776', 'pooja.d@techmahindra.com', 'Run-Flat Tyre Price Quote', 'Inquiring about 245/45 R18 Bridgestone Potenza Run-Flat tyres for BMW 3 Series.', 'Contacted'),
-  ('Anand Kulkarni', '9422055443', 'anand.k@logistics.in', 'Bulk Fleet Tyre Maintenance', 'Looking for monthly tyre alignment and maintenance contract for 10 delivery vans.', 'Closed');
+
+-- 6. TABLE: services (Workshop Service Catalog)
+CREATE TABLE IF NOT EXISTS public.services (
+  id VARCHAR(100) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  price_inr NUMERIC(10,2) NOT NULL DEFAULT 999.00,
+  duration VARCHAR(100) DEFAULT '30 Mins',
+  category VARCHAR(100) DEFAULT 'General Maintenance',
+  image TEXT,
+  status VARCHAR(50) DEFAULT 'Active',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.services ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Allow all for services" ON public.services;
+CREATE POLICY "Allow all for services" ON public.services FOR ALL USING (true) WITH CHECK (true);
+
+
+-- 7. TABLE: shop_settings (Store & Workshop Configuration)
+CREATE TABLE IF NOT EXISTS public.shop_settings (
+  id VARCHAR(100) PRIMARY KEY DEFAULT 'default_settings',
+  store_name VARCHAR(255) DEFAULT 'Sadguru Tyres & Alignment Center',
+  hub_name VARCHAR(255) DEFAULT 'Main Workshop Hub',
+  address TEXT DEFAULT 'Sadguru Tyres & Alignment Center, Main Highway Junction, Pune, Maharashtra 411001',
+  short_address TEXT DEFAULT 'Near Bus Stand, Main Road, Pune, Maharashtra 411001',
+  google_maps_url TEXT DEFAULT 'https://maps.app.goo.gl/j9kVxiwCqT5APoYL8',
+  toll_free_phone VARCHAR(50) DEFAULT '1800 15 11 00',
+  direct_phone VARCHAR(100) DEFAULT '+91 98220 12345 / 020 2543 8899',
+  email VARCHAR(255) DEFAULT 'care@sadgurutyres.com',
+  weekday_hours VARCHAR(100) DEFAULT 'Mon - Sat: 9:00 AM - 8:30 PM',
+  sunday_hours VARCHAR(100) DEFAULT 'Sun: 10:00 AM - 4:00 PM (Open 7 Days)',
+  closed_notice VARCHAR(100) DEFAULT 'Open 7 Days',
+  currency VARCHAR(10) DEFAULT 'INR',
+  express_turnaround VARCHAR(255) DEFAULT 'Express 30-minute fitment & alignment.',
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.shop_settings ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Allow all for shop_settings" ON public.shop_settings;
+CREATE POLICY "Allow all for shop_settings" ON public.shop_settings FOR ALL USING (true) WITH CHECK (true);
+
+INSERT INTO public.shop_settings (id, store_name, address, email, direct_phone)
+VALUES ('default_settings', 'Sadguru Tyres & Alignment Center', 'Sadguru Tyres & Alignment Center, Main Highway Junction, Pune, Maharashtra 411001', 'care@sadgurutyres.com', '+91 98220 12345')
+ON CONFLICT (id) DO NOTHING;
+
+
+-- 8. TABLE: subadmins (Administrator Team)
+CREATE TABLE IF NOT EXISTS public.subadmins (
+  id VARCHAR(100) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  role VARCHAR(100) DEFAULT 'Support Executive',
+  phone VARCHAR(50) DEFAULT '+91 98000 00000',
+  status VARCHAR(50) DEFAULT 'Active',
+  permissions TEXT[] DEFAULT ARRAY['bookings_manage']::TEXT[],
+  avatar_color VARCHAR(20) DEFAULT '#2563eb',
+  last_active TIMESTAMPTZ DEFAULT NOW(),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.subadmins ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Allow all for subadmins" ON public.subadmins;
+CREATE POLICY "Allow all for subadmins" ON public.subadmins FOR ALL USING (true) WITH CHECK (true);
+
+
+-- 9. TABLE: error_logs (System & API Error Tracking)
+CREATE TABLE IF NOT EXISTS public.error_logs (
+  id VARCHAR(100) PRIMARY KEY,
+  severity VARCHAR(50) DEFAULT 'Warning',
+  module VARCHAR(100) DEFAULT 'API Endpoint Handler',
+  message TEXT NOT NULL,
+  stack TEXT,
+  status VARCHAR(50) DEFAULT 'Unresolved',
+  timestamp TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.error_logs ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Allow all for error_logs" ON public.error_logs;
+CREATE POLICY "Allow all for error_logs" ON public.error_logs FOR ALL USING (true) WITH CHECK (true);
+
+
+-- 10. TABLE: faqs (Frequently Asked Questions)
+CREATE TABLE IF NOT EXISTS public.faqs (
+  id VARCHAR(100) PRIMARY KEY,
+  question TEXT NOT NULL,
+  answer TEXT NOT NULL,
+  category VARCHAR(100) DEFAULT 'General',
+  status VARCHAR(50) DEFAULT 'Active',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.faqs ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Allow all for faqs" ON public.faqs;
+CREATE POLICY "Allow all for faqs" ON public.faqs FOR ALL USING (true) WITH CHECK (true);
+
+
+-- 11. TABLE: audit_logs (Activity Audit Trail)
+CREATE TABLE IF NOT EXISTS public.audit_logs (
+  id VARCHAR(100) PRIMARY KEY,
+  subadmin_id VARCHAR(100),
+  subadmin_name VARCHAR(255) DEFAULT 'SuperAdmin',
+  action VARCHAR(255) NOT NULL,
+  details TEXT,
+  timestamp TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.audit_logs ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Allow all for audit_logs" ON public.audit_logs;
+CREATE POLICY "Allow all for audit_logs" ON public.audit_logs FOR ALL USING (true) WITH CHECK (true);

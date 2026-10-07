@@ -20,8 +20,15 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors());
+import { supabase } from "./config/supabase.js";
+
+// Middleware - permissive CORS for production & deployment environments
+app.use(cors({
+  origin: true, // Allow any requesting origin
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+}));
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
@@ -43,36 +50,62 @@ app.get("/", (req, res) => {
       brands: "/api/brands",
       services: "/api/services",
       bookings: "/api/bookings",
+      leads: "/api/leads",
+      quotes: "/api/quotes",
       settings: "/api/settings"
     },
     timestamp: new Date().toISOString()
   });
 });
 
-// Health check
-app.get("/api/health", (req, res) => {
+// Health check with live Supabase Database verification
+app.get(["/api/health", "/health"], async (req, res) => {
+  let dbStatus = "Unknown";
+  let dbError = null;
+
+  try {
+    const { data, error } = await supabase.from("service_bookings").select("id").limit(1);
+    if (error) {
+      dbStatus = "Database Query Error: " + error.message;
+      dbError = error.message;
+    } else {
+      dbStatus = "Connected (Supabase OK)";
+    }
+  } catch (err) {
+    dbStatus = "Database Connection Failed";
+    dbError = err.message;
+  }
+
   res.json({
     status: "OK",
     service: "Sadguru Tyres API Server",
+    database: dbStatus,
+    dbError,
     timestamp: new Date().toISOString(),
   });
 });
 
-// Mount Routes
-app.use("/api/tyres", tyresRouter);
-app.use("/api/brands", brandsRouter);
-app.use("/api/bookings", bookingsRouter);
-app.use("/api/quotes", quotesRouter);
-app.use("/api/admin", authRouter);
-app.use("/api/admin/subadmins", subadminsRouter);
-app.use("/api/admin/errors", errorsRouter);
-app.use("/api/admin/analytics", analyticsRouter);
-app.use("/api/faqs", faqsRouter);
-app.use("/api/services", servicesRouter);
-app.use("/api/leads", leadsRouter);
-app.use("/api/admin/payments", paymentsRouter);
-app.use("/api/settings", settingsRouter);
-app.use("/api/admin/settings", settingsRouter);
+// Helper to mount routers under both /api/... and root /... for flexibility
+const mountRouters = (prefix = "") => {
+  app.use(`${prefix}/tyres`, tyresRouter);
+  app.use(`${prefix}/brands`, brandsRouter);
+  app.use(`${prefix}/bookings`, bookingsRouter);
+  app.use(`${prefix}/quotes`, quotesRouter);
+  app.use(`${prefix}/admin`, authRouter);
+  app.use(`${prefix}/admin/subadmins`, subadminsRouter);
+  app.use(`${prefix}/admin/errors`, errorsRouter);
+  app.use(`${prefix}/admin/analytics`, analyticsRouter);
+  app.use(`${prefix}/faqs`, faqsRouter);
+  app.use(`${prefix}/services`, servicesRouter);
+  app.use(`${prefix}/leads`, leadsRouter);
+  app.use(`${prefix}/admin/payments`, paymentsRouter);
+  app.use(`${prefix}/settings`, settingsRouter);
+  app.use(`${prefix}/admin/settings`, settingsRouter);
+};
+
+// Mount under both standard /api and direct root
+mountRouters("/api");
+mountRouters("");
 
 // Global 404 handler
 app.use((req, res) => {
