@@ -23,12 +23,47 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Helper to upload base64 images directly into Supabase Storage bucket
+async function uploadBase64ToSupabase(imgStr, bucketName = "brands") {
+  if (!imgStr || typeof imgStr !== "string") return imgStr;
+  if (!imgStr.startsWith("data:image/")) return imgStr;
+
+  try {
+    const match = imgStr.match(/^data:image\/([a-zA-Z0-9+]+);base64,(.+)$/);
+    if (!match) return imgStr;
+
+    const rawExt = match[1].toLowerCase();
+    const mimeExt = rawExt === "jpeg" ? "jpg" : rawExt;
+    const base64Data = match[2];
+    const buffer = Buffer.from(base64Data, "base64");
+    const fileName = `brand_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${mimeExt}`;
+
+    const { data, error } = await supabase.storage.from(bucketName).upload(fileName, buffer, {
+      contentType: `image/${rawExt}`,
+      upsert: true,
+    });
+
+    if (error) {
+      console.error(`Supabase storage upload error for bucket ${bucketName}:`, error.message);
+      return imgStr;
+    }
+
+    const { data: publicData } = supabase.storage.from(bucketName).getPublicUrl(fileName);
+    return publicData?.publicUrl || imgStr;
+  } catch (err) {
+    console.error("Storage upload exception:", err.message);
+    return imgStr;
+  }
+}
+
 // POST /api/brands - Insert brand into Supabase database
 router.post("/", async (req, res) => {
+  const processedLogo = await uploadBase64ToSupabase(req.body.logo, "brands");
+
   const newBrand = {
     id: req.body.id || `brand-${Date.now()}`,
     name: req.body.name,
-    logo: req.body.logo,
+    logo: processedLogo,
     tagline: req.body.tagline || "",
     status: req.body.status || "Active",
   };
@@ -49,9 +84,15 @@ router.post("/", async (req, res) => {
 // PUT /api/brands/:id - Update brand in database
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
+
+  let processedLogo = undefined;
+  if (req.body.logo !== undefined) {
+    processedLogo = await uploadBase64ToSupabase(req.body.logo, "brands");
+  }
+
   const updatePayload = {
     name: req.body.name,
-    logo: req.body.logo,
+    logo: processedLogo,
     tagline: req.body.tagline,
     status: req.body.status,
   };

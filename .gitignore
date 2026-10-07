@@ -27,3 +27,12 @@ coverage/
 # Local Data
 data/*.json
 
+
+# Temporary, Seed, and Migration Files
+scripts/
+temp/
+test/
+*.tmp
+*.temp
+seed*.js
+migration*.js
