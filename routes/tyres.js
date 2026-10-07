@@ -16,11 +16,18 @@ router.get("/", async (req, res) => {
       return res.status(500).json({ success: false, message: error.message, data: [] });
     }
 
-    const mappedData = data.map(t => ({
-      ...t,
-      image2: t.visual_specs?.image2 || "",
-      image3: t.visual_specs?.image3 || ""
-    }));
+    const mappedData = data.map(t => {
+      const isShow = t.show_on_home !== undefined
+        ? Boolean(t.show_on_home)
+        : (t.visual_specs?.show_on_home !== undefined ? Boolean(t.visual_specs.show_on_home) : false);
+      return {
+        ...t,
+        image2: t.visual_specs?.image2 || "",
+        image3: t.visual_specs?.image3 || "",
+        showOnHome: isShow,
+        show_on_home: isShow
+      };
+    });
 
     res.json({ success: true, count: data.length, data: mappedData });
   } catch (err) {
@@ -43,10 +50,16 @@ router.get("/:id", async (req, res) => {
       return res.status(404).json({ success: false, message: "Tyre not found" });
     }
 
+    const isShow = data.show_on_home !== undefined
+      ? Boolean(data.show_on_home)
+      : (data.visual_specs?.show_on_home !== undefined ? Boolean(data.visual_specs.show_on_home) : false);
+
     const mappedData = {
       ...data,
       image2: data.visual_specs?.image2 || "",
-      image3: data.visual_specs?.image3 || ""
+      image3: data.visual_specs?.image3 || "",
+      showOnHome: isShow,
+      show_on_home: isShow
     };
 
     res.json({ success: true, data: mappedData });
@@ -55,8 +68,47 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Helper to upload base64 images directly into Supabase Storage bucket
+async function uploadBase64ToSupabase(imgStr, bucketName = "tyres_products") {
+  if (!imgStr || typeof imgStr !== "string") return imgStr;
+  if (!imgStr.startsWith("data:image/")) return imgStr;
+
+  try {
+    const match = imgStr.match(/^data:image\/([a-zA-Z0-9+]+);base64,(.+)$/);
+    if (!match) return imgStr;
+
+    const rawExt = match[1].toLowerCase();
+    const mimeExt = rawExt === "jpeg" ? "jpg" : rawExt;
+    const base64Data = match[2];
+    const buffer = Buffer.from(base64Data, "base64");
+    const fileName = `tyre_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${mimeExt}`;
+
+    const { data, error } = await supabase.storage.from(bucketName).upload(fileName, buffer, {
+      contentType: `image/${rawExt}`,
+      upsert: true,
+    });
+
+    if (error) {
+      console.error(`Supabase storage upload error for bucket ${bucketName}:`, error.message);
+      return imgStr;
+    }
+
+    const { data: publicData } = supabase.storage.from(bucketName).getPublicUrl(fileName);
+    return publicData?.publicUrl || imgStr;
+  } catch (err) {
+    console.error("Storage upload exception:", err.message);
+    return imgStr;
+  }
+}
+
 // POST /api/tyres - Store new tyre directly in database
 router.post("/", async (req, res) => {
+  const processedImage = await uploadBase64ToSupabase(req.body.image, "tyres_products");
+  const processedImage2 = await uploadBase64ToSupabase(req.body.image2, "tyres_products");
+  const processedImage3 = await uploadBase64ToSupabase(req.body.image3, "tyres_products");
+
+  const showOnHome = req.body.showOnHome !== undefined ? req.body.showOnHome : (req.body.show_on_home !== undefined ? req.body.show_on_home : true);
+
   const newTyre = {
     id: req.body.id || `tyre-${Date.now()}`,
     name: req.body.name,
@@ -72,12 +124,20 @@ router.post("/", async (req, res) => {
     price_inr: Number(req.body.priceINR || req.body.price_inr || 12500),
     price_usd: Number(req.body.priceUSD || req.body.price_usd || 195),
     stock: Number(req.body.stock || 30),
-    image: req.body.image || "/images/tyre_sport.jpg",
+    image: processedImage || "/images/tyre_sport.jpg",
     tagline: req.body.tagline || "",
+    description: req.body.description || null,
+    specs: req.body.specs || {},
+    available_sizes: req.body.availableSizes || req.body.available_sizes || [],
+    highlights: req.body.highlights || [],
+    rating: Number(req.body.rating || 4.8),
+    reviews_count: Number(req.body.reviewsCount || req.body.reviews_count || 1),
+    date_added: req.body.dateAdded || req.body.date_added || new Date().toISOString().split("T")[0],
     visual_specs: {
       ...(req.body.visual_specs || {}),
-      image2: req.body.image2 || "",
-      image3: req.body.image3 || ""
+      image2: processedImage2 || "",
+      image3: processedImage3 || "",
+      show_on_home: showOnHome
     },
   };
 
@@ -87,7 +147,17 @@ router.post("/", async (req, res) => {
       console.error("Supabase insert tyre error:", error.message);
       return res.status(500).json({ success: false, message: error.message });
     }
-    res.status(201).json({ success: true, message: "Tyre stored in database", data: data[0] || newTyre });
+    const isShow = data[0].show_on_home !== undefined
+      ? Boolean(data[0].show_on_home)
+      : (data[0].visual_specs?.show_on_home !== undefined ? Boolean(data[0].visual_specs.show_on_home) : false);
+    const created = {
+      ...data[0],
+      image2: data[0].visual_specs?.image2 || "",
+      image3: data[0].visual_specs?.image3 || "",
+      showOnHome: isShow,
+      show_on_home: isShow
+    };
+    res.status(201).json({ success: true, message: "Tyre stored in database", data: created });
   } catch (err) {
     console.error("Supabase insert tyre exception:", err.message);
     res.status(500).json({ success: false, message: err.message });
@@ -97,6 +167,43 @@ router.post("/", async (req, res) => {
 // PUT /api/tyres/:id - Update tyre product in database
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
+
+  let processedImage = undefined;
+  if (req.body.image !== undefined) {
+    processedImage = await uploadBase64ToSupabase(req.body.image, "tyres_products");
+  }
+
+  let processedImage2 = undefined;
+  if (req.body.image2 !== undefined) {
+    processedImage2 = await uploadBase64ToSupabase(req.body.image2, "tyres_products");
+  }
+
+  let processedImage3 = undefined;
+  if (req.body.image3 !== undefined) {
+    processedImage3 = await uploadBase64ToSupabase(req.body.image3, "tyres_products");
+  }
+
+  // Fetch current row to preserve other visual_specs
+  let existingVisualSpecs = {};
+  try {
+    const { data: currentTyre } = await supabase.from("tyre_products").select("visual_specs").eq("id", id).single();
+    if (currentTyre && currentTyre.visual_specs) {
+      existingVisualSpecs = currentTyre.visual_specs;
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  const mergedVisualSpecs = {
+    ...existingVisualSpecs,
+    ...(req.body.visual_specs || {})
+  };
+
+  if (processedImage2 !== undefined) mergedVisualSpecs.image2 = processedImage2;
+  if (processedImage3 !== undefined) mergedVisualSpecs.image3 = processedImage3;
+  if (req.body.showOnHome !== undefined) mergedVisualSpecs.show_on_home = Boolean(req.body.showOnHome);
+  if (req.body.show_on_home !== undefined) mergedVisualSpecs.show_on_home = Boolean(req.body.show_on_home);
+
   const updatePayload = {
     name: req.body.name,
     brand: req.body.brand,
@@ -111,13 +218,20 @@ router.put("/:id", async (req, res) => {
     price_inr: req.body.priceINR != null ? Number(req.body.priceINR) : (req.body.price_inr != null ? Number(req.body.price_inr) : undefined),
     price_usd: req.body.priceUSD != null ? Number(req.body.priceUSD) : (req.body.price_usd != null ? Number(req.body.price_usd) : undefined),
     stock: req.body.stock != null ? Number(req.body.stock) : undefined,
-    image: req.body.image,
+    image: processedImage,
     tagline: req.body.tagline,
-    visual_specs: req.body.visual_specs || {},
+    description: req.body.description,
+    specs: req.body.specs,
+    available_sizes: req.body.availableSizes || req.body.available_sizes,
+    highlights: req.body.highlights,
+    rating: req.body.rating != null ? Number(req.body.rating) : undefined,
+    reviews_count: req.body.reviewsCount != null ? Number(req.body.reviewsCount) : (req.body.reviews_count != null ? Number(req.body.reviews_count) : undefined),
+    date_added: req.body.dateAdded || req.body.date_added,
+    visual_specs: mergedVisualSpecs,
   };
 
-  if (req.body.image2 !== undefined) updatePayload.visual_specs.image2 = req.body.image2;
-  if (req.body.image3 !== undefined) updatePayload.visual_specs.image3 = req.body.image3;
+  if (processedImage2 !== undefined) updatePayload.visual_specs.image2 = processedImage2;
+  if (processedImage3 !== undefined) updatePayload.visual_specs.image3 = processedImage3;
 
   // Remove undefined properties
   Object.keys(updatePayload).forEach((key) => updatePayload[key] === undefined && delete updatePayload[key]);
@@ -127,10 +241,15 @@ router.put("/:id", async (req, res) => {
     if (error) {
       return res.status(500).json({ success: false, message: error.message });
     }
+    const isShow = data[0].show_on_home !== undefined
+      ? Boolean(data[0].show_on_home)
+      : (data[0].visual_specs?.show_on_home !== undefined ? Boolean(data[0].visual_specs.show_on_home) : false);
     const mappedData = {
       ...data[0],
       image2: data[0].visual_specs?.image2 || "",
-      image3: data[0].visual_specs?.image3 || ""
+      image3: data[0].visual_specs?.image3 || "",
+      showOnHome: isShow,
+      show_on_home: isShow
     };
     res.json({ success: true, message: "Tyre updated in database", data: mappedData });
   } catch (err) {
