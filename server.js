@@ -31,6 +31,24 @@ app.use((req, res, next) => {
   next();
 });
 
+// Root Welcome Route
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Sadguru Tyres & Mobility Solutions - Backend API Server is running",
+    status: "healthy",
+    endpoints: {
+      health: "/api/health",
+      tyres: "/api/tyres",
+      brands: "/api/brands",
+      services: "/api/services",
+      bookings: "/api/bookings",
+      settings: "/api/settings"
+    },
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Health check
 app.get("/api/health", (req, res) => {
   res.json({
@@ -58,10 +76,19 @@ app.use("/api/admin/settings", settingsRouter);
 
 // Global 404 handler
 app.use((req, res) => {
-  res.status(404).json({ success: false, message: "API Route not found" });
+  res.status(404).json({ success: false, message: `API Route not found: ${req.method} ${req.url}` });
 });
 
-// Start Server with Automatic Port Fallback
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error("Unhandled API Error:", err);
+  res.status(500).json({
+    success: false,
+    message: err.message || "Internal Server Error"
+  });
+});
+
+// Start Server with Automatic Port Fallback (in local development)
 const startServer = (portToTry) => {
   const server = app.listen(portToTry, () => {
     console.log(`=======================================================`);
@@ -80,4 +107,8 @@ const startServer = (portToTry) => {
   });
 };
 
-startServer(Number(PORT));
+if (!process.env.VERCEL) {
+  startServer(Number(PORT));
+}
+
+export default app;
